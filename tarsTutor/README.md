@@ -40,6 +40,29 @@ Uploads support UTF-8 text/Markdown/CSV, PDF, DOCX, PPTX, PNG, JPEG and WebP, up
 
 In the retained `/board` editor, the conversation restores its latest six accepted turns and active practice question after reload. Use **Retry request** to reuse the original request ID after a failure or cancellation. **New conversation** starts fresh tutor context while retaining your drawings. Select board text and choose **Review selected work** for feedback. The classroom supports drawing-aware explanations; formal rubric grading of freehand work is not implemented.
 
+## Netlify deployment
+
+The repository-root `netlify.toml` builds the frontend and deploys
+`netlify/functions/tutor.mjs` at `/api/tutor/*`. The function forwards lessons,
+questions, uploads and speech to `https://tarstutor-backend.onrender.com`.
+The browser keeps using same-origin URLs; no backend CORS change is required.
+
+In Netlify's environment variables, set `TUTOR_BACKEND_API_TOKEN` to the same
+secret as Render's `BACKEND_API_TOKEN`. Make it available to Functions at runtime.
+If the backend has no token configured, omit this variable. Never prefix it with
+`VITE_`. Optionally set `TUTOR_BACKEND_URL` to override the Render URL.
+Redeploy after changing these settings. Local Vite development still uses the
+local backend and the overrides in `.env.tutor.example`.
+
+Netlify Functions limit requests to 60 seconds and buffered payloads to 6 MB.
+Slow synchronous questions/speech or a Render cold start can time out; retry
+after the backend wakes. Base64 uploads can hit the hosting limit before the
+app's 6 MB file limit. Larger uploads or longer operations need a different
+proxy or asynchronous backend endpoints. This proxy does not add user accounts
+or per-user authorization.
+
+Verify the proxy with `node --test scripts/netlify-proxy.test.mjs`.
+
 ## Code layout
 
 - `excalidraw-app/`: application interface and Vite proxy to FastAPI.
