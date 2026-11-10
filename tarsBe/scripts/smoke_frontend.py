@@ -16,7 +16,7 @@ def main():
         browser = playwright.chromium.launch(channel="msedge", headless=True)
         page = browser.new_page(viewport={"width": 1440, "height": 1000})
         page.set_default_timeout(20000)
-        page.goto(target, wait_until="domcontentloaded", timeout=90000)
+        page.goto(f"{target.rstrip('/')}/board", wait_until="domcontentloaded", timeout=90000)
         expect(page.get_by_role("button", name="Send to tutor", exact=True)).to_be_visible(timeout=90000)
         prompt = "Explain Newton's second law with mass 2 kg and acceleration 3 m/s². Use the calculator and show a board lesson. Also ask exactly this numeric practice question in the question field: What is 3 + 4? Do not reveal the answer to the practice question."
         page.get_by_label("Your question", exact=True).fill(prompt)

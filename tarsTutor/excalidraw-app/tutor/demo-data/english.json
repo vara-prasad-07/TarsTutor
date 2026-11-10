@@ -1,0 +1,525 @@
+{
+  "session_id": "verified-7624b8c62ea3",
+  "prompt": "Teach me linear regression from scratch. Plot study hours against test scores, use y = 45 + 6x, predict the score at x = 3, explain residuals, and include quizzes.",
+  "title": "Introduction to Linear Regression",
+  "status": "completed",
+  "generating": false,
+  "stage": "start",
+  "stages": [
+    {
+      "id": "understand",
+      "label": "Understanding your learning request",
+      "status": "completed"
+    },
+    {
+      "id": "plan",
+      "label": "Planning your personalized lesson",
+      "status": "completed"
+    },
+    {
+      "id": "explain",
+      "label": "Generating explanations and examples",
+      "status": "completed"
+    },
+    {
+      "id": "visuals",
+      "label": "Preparing whiteboard visuals",
+      "status": "completed"
+    },
+    {
+      "id": "quiz",
+      "label": "Creating interactive quizzes",
+      "status": "completed"
+    },
+    {
+      "id": "narration",
+      "label": "Preparing AI tutor narration",
+      "status": "completed"
+    },
+    {
+      "id": "start",
+      "label": "Starting your interactive lesson",
+      "status": "completed"
+    }
+  ],
+  "segments": [
+    {
+      "id": "segment-1",
+      "title": "Introduction to Linear Regression",
+      "objective": "Introduce the concept of modeling relationships between two variables using a straight line.",
+      "narration": "Welcome! Today we are exploring linear regression, a powerful tool in statistics that lets us model the relationship between two variables. Imagine you want to know how study hours affect test scores. By plotting our data points on a graph, we can see a clear upward trend. Linear regression finds the best-fitting straight line through these points, allowing us to understand the trend and make future predictions with confidence.",
+      "duration_seconds": 28.75,
+      "elements": [
+        {
+          "id": "segment-1-element-1",
+          "type": "text",
+          "reveal_at": 0.0,
+          "x": 60.0,
+          "y": 145,
+          "width": 880.0,
+          "height": 80.0,
+          "text": "Linear regression helps us model the relationship between an independent variable (x) and a dependent variable (y) using a straight line.",
+          "caption": "",
+          "color": "ink",
+          "shape": "rectangle",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "x",
+          "y_label": "y",
+          "x_min": 0,
+          "x_max": 10,
+          "y_min": 0,
+          "y_max": 10,
+          "series": [],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        },
+        {
+          "id": "segment-1-element-2",
+          "type": "graph",
+          "reveal_at": 0.35,
+          "x": 60.0,
+          "y": 240.0,
+          "width": 880.0,
+          "height": 380.0,
+          "text": "",
+          "caption": "",
+          "color": "ink",
+          "shape": "rectangle",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "Study Hours",
+          "y_label": "Test Score",
+          "x_min": 0.0,
+          "x_max": 8.0,
+          "y_min": 40.0,
+          "y_max": 95.0,
+          "series": [
+            {
+              "label": "Student Data",
+              "kind": "points",
+              "color": "blue",
+              "points": [
+                {
+                  "x": 1.0,
+                  "y": 52.0
+                },
+                {
+                  "x": 2.0,
+                  "y": 55.0
+                },
+                {
+                  "x": 3.0,
+                  "y": 64.0
+                },
+                {
+                  "x": 4.0,
+                  "y": 68.0
+                },
+                {
+                  "x": 5.0,
+                  "y": 76.0
+                }
+              ]
+            },
+            {
+              "label": "Trend Line",
+              "kind": "line",
+              "color": "coral",
+              "points": [
+                {
+                  "x": 0.0,
+                  "y": 45.0
+                },
+                {
+                  "x": 8.0,
+                  "y": 93.0
+                }
+              ]
+            }
+          ],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        }
+      ],
+      "quiz": {
+        "id": "segment-1-quiz",
+        "kind": "choice",
+        "prompt": "What is the main purpose of linear regression in statistics?",
+        "choices": [
+          "To model the relationship between two variables using a straight line",
+          "To calculate the exact exact average without any error",
+          "To measure categorical variables like eye color",
+          "To prove that studying has no effect on scores"
+        ]
+      }
+    },
+    {
+      "id": "segment-2",
+      "title": "The Regression Equation: y = 45 + 6x",
+      "objective": "Break down the y-intercept and slope using the study hours and test scores example.",
+      "narration": "Let's examine the heart of linear regression: the straight line equation, y equals 45 plus 6x. Here, y represents the predicted test score, and x is the number of study hours. The number 45 is our y-intercept. This means if a student studies for zero hours, our model predicts a baseline test score of 45. The number 6 is the slope. For every additional hour a student spends studying, their predicted test score increases by 6 points. Let us visualize this on our graph with a solid line starting at 45 and rising steadily upward as study hours increase.",
+      "duration_seconds": 41.25,
+      "elements": [
+        {
+          "id": "segment-2-element-1",
+          "type": "equation",
+          "reveal_at": 0.0,
+          "x": 60.0,
+          "y": 150.0,
+          "width": 420.0,
+          "height": 100.0,
+          "text": "y = 45 + 6x",
+          "caption": "Linear Regression Model",
+          "color": "blue",
+          "shape": "rectangle",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "x",
+          "y_label": "y",
+          "x_min": 0,
+          "x_max": 10,
+          "y_min": 0,
+          "y_max": 10,
+          "series": [],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        },
+        {
+          "id": "segment-2-element-2",
+          "type": "text",
+          "reveal_at": 0.3,
+          "x": 60.0,
+          "y": 270.0,
+          "width": 420.0,
+          "height": 100.0,
+          "text": "Intercept (45): Base score with 0 study hours.\nSlope (6): Score increase per study hour.",
+          "caption": "Interpreting Parameters",
+          "color": "ink",
+          "shape": "rectangle",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "x",
+          "y_label": "y",
+          "x_min": 0,
+          "x_max": 10,
+          "y_min": 0,
+          "y_max": 10,
+          "series": [],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        },
+        {
+          "id": "segment-2-element-3",
+          "type": "graph",
+          "reveal_at": 0.6,
+          "x": 510.0,
+          "y": 150.0,
+          "width": 420.0,
+          "height": 450.0,
+          "text": "",
+          "caption": "",
+          "color": "ink",
+          "shape": "rectangle",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "Study Hours (x)",
+          "y_label": "Test Score (y)",
+          "x_min": 0.0,
+          "x_max": 8.0,
+          "y_min": 40.0,
+          "y_max": 100.0,
+          "series": [
+            {
+              "label": "Regression Line",
+              "kind": "line",
+              "color": "green",
+              "points": [
+                {
+                  "x": 0.0,
+                  "y": 45.0
+                },
+                {
+                  "x": 8.0,
+                  "y": 93.0
+                }
+              ]
+            },
+            {
+              "label": "Student Data",
+              "kind": "points",
+              "color": "blue",
+              "points": [
+                {
+                  "x": 1.0,
+                  "y": 50.0
+                },
+                {
+                  "x": 2.0,
+                  "y": 60.0
+                },
+                {
+                  "x": 4.0,
+                  "y": 68.0
+                },
+                {
+                  "x": 5.0,
+                  "y": 75.0
+                }
+              ]
+            }
+          ],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        }
+      ],
+      "quiz": {
+        "id": "segment-2-quiz",
+        "kind": "numeric",
+        "prompt": "Using the equation y = 45 + 6x, what is the predicted test score for a student who studies for 3 hours?",
+        "choices": []
+      }
+    },
+    {
+      "id": "segment-3",
+      "title": "Making Predictions and Understanding Residuals",
+      "objective": "Predict a test score for 3 study hours and explain what residuals represent.",
+      "narration": "Now that we have our equation, y equals 45 plus 6x, let us use it to make a prediction. Suppose a student studies for 3 hours. We substitute x equals 3 into our equation: 45 plus 6 times 3 gives us 45 plus 18, which equals 63. Our model predicts a test score of 63! However, real-world data is rarely perfect. If that same student actually scores a 70, the difference between the actual score and our predicted score is called a residual. Here, the residual is 70 minus 63, which equals positive 7. This positive residual means our model underestimated the student's actual performance. Residuals help us measure how well our line fits the actual data points.",
+      "duration_seconds": 49.16666666666667,
+      "elements": [
+        {
+          "id": "segment-3-element-1",
+          "type": "equation",
+          "reveal_at": 0.0,
+          "x": 60.0,
+          "y": 145,
+          "width": 420.0,
+          "height": 120.0,
+          "text": "y = 45 + 6(3) = 63",
+          "caption": "Prediction for x = 3 hours",
+          "color": "blue",
+          "shape": "rectangle",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "x",
+          "y_label": "y",
+          "x_min": 0,
+          "x_max": 10,
+          "y_min": 0,
+          "y_max": 10,
+          "series": [],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        },
+        {
+          "id": "segment-3-element-2",
+          "type": "text",
+          "reveal_at": 0.4,
+          "x": 510.0,
+          "y": 145,
+          "width": 420.0,
+          "height": 220.0,
+          "text": "Residual = Actual - Predicted\nResidual = 70 - 63 = +7\n\nA positive residual means the actual score was higher than the model predicted.",
+          "caption": "Understanding Residuals",
+          "color": "purple",
+          "shape": "rectangle",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "x",
+          "y_label": "y",
+          "x_min": 0,
+          "x_max": 10,
+          "y_min": 0,
+          "y_max": 10,
+          "series": [],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        },
+        {
+          "id": "segment-3-element-3",
+          "type": "graph",
+          "reveal_at": 0.7,
+          "x": 60.0,
+          "y": 300.0,
+          "width": 500.0,
+          "height": 300.0,
+          "text": "",
+          "caption": "",
+          "color": "ink",
+          "shape": "rectangle",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "Study Hours (x)",
+          "y_label": "Test Score (y)",
+          "x_min": 0.0,
+          "x_max": 6.0,
+          "y_min": 40.0,
+          "y_max": 90.0,
+          "series": [
+            {
+              "label": "Regression Line",
+              "kind": "line",
+              "color": "blue",
+              "points": [
+                {
+                  "x": 0.0,
+                  "y": 45.0
+                },
+                {
+                  "x": 5.0,
+                  "y": 75.0
+                }
+              ]
+            },
+            {
+              "label": "Actual Student",
+              "kind": "points",
+              "color": "green",
+              "points": [
+                {
+                  "x": 3.0,
+                  "y": 70.0
+                }
+              ]
+            }
+          ],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        }
+      ],
+      "quiz": {
+        "id": "segment-3-quiz",
+        "kind": "numeric",
+        "prompt": "Using the equation y = 45 + 6x, what is the predicted test score for a student who studies for 4 hours?",
+        "choices": []
+      }
+    },
+    {
+      "id": "segment-4",
+      "title": "Linear Regression Practice Quiz",
+      "objective": "Test understanding of linear regression equations, predictions, and residuals.",
+      "narration": "You have done a fantastic job learning how linear regression works, from interpreting the slope and y-intercept to calculating predictions and analyzing residuals! Now, let us test your knowledge with a practice question. Using our regression equation y equals 45 plus 6x, try to calculate the predicted test score for a student who studies for 5 hours. Type your numerical answer below and see how well you have mastered the concepts!",
+      "duration_seconds": 29.583333333333336,
+      "elements": [
+        {
+          "id": "segment-4-element-1",
+          "type": "text",
+          "reveal_at": 0.0,
+          "x": 60.0,
+          "y": 145,
+          "width": 880.0,
+          "height": 60.0,
+          "text": "Test Your Knowledge: Linear Regression Quiz",
+          "caption": "Review and Practice",
+          "color": "blue",
+          "shape": "rectangle",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "x",
+          "y_label": "y",
+          "x_min": 0,
+          "x_max": 10,
+          "y_min": 0,
+          "y_max": 10,
+          "series": [],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        },
+        {
+          "id": "segment-4-element-2",
+          "type": "equation",
+          "reveal_at": 0.3,
+          "x": 60.0,
+          "y": 225.0,
+          "width": 880.0,
+          "height": 100.0,
+          "text": "y = 45 + 6x",
+          "caption": "Regression Model",
+          "color": "ink",
+          "shape": "rectangle",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "x",
+          "y_label": "y",
+          "x_min": 0,
+          "x_max": 10,
+          "y_min": 0,
+          "y_max": 10,
+          "series": [],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        },
+        {
+          "id": "segment-4-element-3",
+          "type": "text",
+          "reveal_at": 0.6,
+          "x": 60.0,
+          "y": 350.0,
+          "width": 880.0,
+          "height": 120.0,
+          "text": "Based on the equation above, calculate the predicted test score for a student who studies for x = 5 hours.",
+          "caption": "Practice Question",
+          "color": "purple",
+          "shape": "rectangle",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "x",
+          "y_label": "y",
+          "x_min": 0,
+          "x_max": 10,
+          "y_min": 0,
+          "y_max": 10,
+          "series": [],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        }
+      ],
+      "quiz": {
+        "id": "segment-4-quiz",
+        "kind": "numeric",
+        "prompt": "Using y = 45 + 6x, what is the predicted test score when x = 5?",
+        "choices": []
+      }
+    }
+  ],
+  "error": null,
+  "revision": 17,
+  "materials": [
+    {
+      "name": "study-notes.pdf",
+      "media_type": "application/pdf",
+      "text": "Scores rise by six per study hour.",
+      "data": ""
+    }
+  ],
+  "total_segments": 4,
+  "conversation": [
+    {
+      "role": "student",
+      "text": "can you explain slope with a real life example"
+    },
+    {
+      "role": "tutor",
+      "text": "Here is a real-world example of slope: imagine you are driving a car and your speed is 60 miles per hour. For every 1 hour that passes, the distance you travel increases by 60 miles. In that relationship, the slope is 60! It tells us the constant rate of change."
+    },
+    {
+      "role": "student",
+      "text": "What does the slope of six mean in this example? Explain in two short sentences."
+    },
+    {
+      "role": "tutor",
+      "text": "The slope of 6 means that for every additional hour spent studying, a student's predicted test score increases by 6 points. It represents the constant rate of change in our linear model."
+    }
+  ]
+}

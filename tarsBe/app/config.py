@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from pydantic import Field, SecretStr
+from pydantic import AliasChoices, Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -16,6 +16,13 @@ class Settings(BaseSettings):
     max_concurrent_turns: int = Field(default=4, ge=1, le=32)
     backend_api_token: SecretStr = SecretStr("")
     cors_origins: list[str] = []
+    # GNANI_API is the name used by the existing local configuration.
+    # Both names are server-only; neither belongs in VITE_* variables.
+    gnani_api_key: SecretStr = Field(default=SecretStr(""), validation_alias=AliasChoices("gnani_api_key", "GNANI_API_KEY", "GNANI_API"))
+    gnani_tts_model: str = Field(default="timbre-v2.5", pattern=r"^timbre-v[\d.]+$")
+    gnani_voice: str = Field(default="Kaveri", min_length=1, max_length=60)
+    gnani_language: str = Field(default="en-IN", pattern=r"^[a-z]{2}-IN$")
+    speech_timeout_seconds: float = Field(default=60, ge=1, le=120)
 
     @property
     def db_path(self) -> Path:

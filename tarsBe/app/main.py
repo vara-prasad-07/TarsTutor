@@ -10,6 +10,7 @@ from uuid import uuid4
 from fastapi import Depends, FastAPI, Header, HTTPException, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 from pydantic import ValidationError
 
 from .config import Settings
@@ -22,6 +23,8 @@ class LegacyPrompt(StrictModel):
     prompt: str = Field(min_length=1, max_length=4000)
 from .provider import GeminiProvider, Provider, ProviderUnavailable
 from .store import Store
+from .lessons import LessonService, create_lesson_router
+from .speech import create_speech_router
 
 logger = logging.getLogger("tars.tutor")
 
@@ -30,6 +33,7 @@ def create_app(settings: Settings | None = None, provider: Provider | None = Non
     config = settings or Settings()
     graph = build_graph(provider) if provider else None
     gate = asyncio.Semaphore(config.max_concurrent_turns)
+    lessons = LessonService(config, provider, gate)
     store: Store | None = None
     inflight: dict[str, tuple[str, str, asyncio.Task]] = {}
 
@@ -37,13 +41,22 @@ def create_app(settings: Settings | None = None, provider: Provider | None = Non
     async def lifespan(app):
         nonlocal store
         store = Store(config.db_path)
+        lessons.start()
         yield
+        await lessons.close()
         tasks = [item[2] for item in inflight.values()]
         for task in tasks:
             task.cancel()
         await asyncio.gather(*tasks, return_exceptions=True)
 
     api = FastAPI(title="TarsTutor Backend", version="0.1.0", lifespan=lifespan)
+    @api.exception_handler(RequestValidationError)
+    async def invalid_request(request: Request, error: RequestValidationError):
+        # Validation errors must not echo entire uploaded drawings/source files.
+        return JSONResponse(status_code=422, content={"detail": [
+            {"type": item["type"], "loc": list(item["loc"]), "msg": item["msg"]}
+            for item in error.errors()
+        ]})
     if config.cors_origins:
         api.add_middleware(CORSMiddleware, allow_origins=config.cors_origins, allow_methods=["GET", "POST"], allow_headers=["Content-Type", "X-API-Key"])
 
@@ -51,12 +64,21 @@ def create_app(settings: Settings | None = None, provider: Provider | None = Non
     async def request_limits(request: Request, call_next):
         # Check actual bytes too: Content-Length alone does not limit chunked requests.
         if request.method == "POST":
+            path = request.url.path
+            if path == "/api/tutor/speech/stt":
+                limit = 4 * 1024 * 1024
+            elif path.startswith("/api/tutor/lessons/") and path.endswith("/questions"):
+                limit = 3 * 1024 * 1024
+            elif path == "/api/tutor/uploads" or path == "/api/tutor/lessons" or path.endswith("/materials"):
+                limit = 12 * 1024 * 1024
+            else:
+                limit = 24000
             size = 0
             chunks = []
             async for chunk in request.stream():
                 size += len(chunk)
-                if size > 24000:
-                    return JSONResponse(status_code=413, content={"detail": "Request exceeds 24KB."})
+                if size > limit:
+                    return JSONResponse(status_code=413, content={"detail": "Request exceeds the upload or message size limit."})
                 chunks.append(chunk)
             request._body = b"".join(chunks)
         response = await call_next(request)
@@ -67,6 +89,9 @@ def create_app(settings: Settings | None = None, provider: Provider | None = Non
         expected = config.backend_api_token.get_secret_value()
         if expected and not hmac.compare_digest(x_api_key or "", expected):
             raise HTTPException(401, "Invalid backend API token.")
+
+    api.include_router(create_lesson_router(lessons), dependencies=[Depends(authorize)])
+    api.include_router(create_speech_router(config), dependencies=[Depends(authorize)])
 
     @api.get("/health")
     async def health():

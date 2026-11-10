@@ -1,0 +1,436 @@
+# Project: TarsTutor — AI-Powered Interactive Whiteboard Tutor
+
+## Your Role
+
+Act as a senior full-stack engineer, AI systems architect, and expert UI/UX designer.
+
+I am giving you full access to my existing TarsTutor codebase. Your responsibility is to inspect, plan, improve, and implement the application to deliver a polished, fully functional AI-powered tutoring platform.
+
+**Our goal is to recreate the user experience shown in the three reference screenshots, with TarsTutor's own branding.**
+
+I do not want a static UI demonstration. I want a real, working application where students can enter any topic, generate personalized lessons, watch an AI tutor teach through an interactive whiteboard, listen to spoken explanations, and ask questions through voice or text.
+
+Use the screenshots as the primary visual and interaction references.
+
+---
+
+## 1. Understand the Reference Screenshots
+
+### Screenshot 1 — Interactive AI Whiteboard Classroom
+
+This represents our final learning experience.
+
+Recreate the following features:
+
+- A large, interactive digital whiteboard.
+- AI-generated educational content displayed step by step.
+- Handwritten-style explanations, equations, diagrams, graphs, and illustrations.
+- AI voice explanations synchronized with the whiteboard.
+- A conversational AI tutor that guides students throughout the lesson.
+- Interactive quizzes and multiple-choice questions.
+- Voice and text input for asking questions during the lesson.
+- Play, pause, resume, and lesson-speed controls.
+- A sidebar for uploading study materials.
+- A clean, modern, distraction-free learning environment.
+
+**Important:** The whiteboard should progressively draw or reveal content while the AI tutor explains it. Do not simply display a complete block of generated text.
+
+### Screenshot 2 — Landing Page
+
+This is the reference for the TarsTutor landing page.
+
+Create a modern, responsive homepage featuring:
+
+- TarsTutor branding and navigation bar.
+- A compelling headline such as "Your Personal AI Tutor, Teaching Live on a Whiteboard."
+- A short explanation of what TarsTutor does.
+- A large, beautifully designed prompt input area.
+- Placeholder: "What would you like to learn today?"
+- File and image upload functionality.
+- A prominent **Start Lesson** button.
+- Example learning topics and lesson previews.
+- Smooth animations, subtle shadows, rounded corners, and modern typography.
+
+Students should be able to enter prompts such as:
+
+"Teach me linear regression from basics with examples."
+
+"Explain the Pythagorean theorem using diagrams."
+
+"Teach me Python loops with practical examples."
+
+Clicking Start Lesson must trigger actual lesson generation and navigate to the processing screen.
+
+### Screenshot 3 — Lesson Generation Screen
+
+Recreate the processing experience shown in the third screenshot.
+
+When a student starts a lesson:
+
+1. Navigate immediately to a dedicated lesson-generation screen.
+2. Display a polished loading interface with TarsTutor branding.
+3. Show a progress indicator with meaningful generation stages.
+4. Display stages such as:
+   - Understanding your learning request
+   - Planning your personalized lesson
+   - Generating explanations and examples
+   - Preparing whiteboard visuals
+   - Creating interactive quizzes
+   - Preparing AI tutor narration
+   - Starting your interactive lesson
+5. Update each stage according to actual backend progress.
+6. Automatically navigate to the whiteboard classroom when the minimum playable lesson content is ready.
+
+**Do not fake progress using arbitrary timers.** Progress must reflect actual generation stages. If an exact percentage is unavailable, show stage-based progress instead.
+
+If generation fails, provide clear error messages and retry functionality.
+
+---
+
+## 2. Existing Codebase and Technology
+
+Before writing code, thoroughly inspect the existing project.
+
+Identify:
+
+- Frontend framework and routing structure.
+- Backend architecture and API endpoints.
+- Existing AI model integrations.
+- Current whiteboard rendering implementation.
+- Speech-to-text and text-to-speech functionality.
+- Environment variables.
+- Existing reusable components.
+- Dependencies and build configurations.
+
+**I have already configured the Gnani AI API credentials in my `.env` file for STT (Speech-to-Text) and TTS (Text-to-Speech).**
+
+Reuse these existing credentials and integrations.
+
+Do not replace them unnecessarily or introduce competing speech providers.
+
+Do not expose secret API keys in frontend code, browser requests, logs, or Git commits.
+
+Verify the actual Gnani API integration requirements and implement secure server-side communication.
+
+Preserve all working functionality unless a change is necessary for the final architecture.
+
+---
+
+## 3. Core AI Lesson Generation
+
+Implement a genuine AI-driven lesson generation pipeline.
+
+When a student submits a topic, the system should:
+
+1. Analyze the student's request.
+2. Identify the subject and learning objectives.
+3. Generate a logical lesson structure.
+4. Divide the lesson into manageable teaching steps.
+5. Generate accurate explanations and relevant examples.
+6. Prepare whiteboard instructions and visual elements.
+7. Generate narration text for each teaching step.
+8. Create relevant questions to assess understanding.
+9. Start the lesson once the first teaching segment is ready.
+
+Design a structured lesson format rather than relying on unstructured AI-generated paragraphs.
+
+For example, each lesson segment could contain:
+
+- Segment ID
+- Lesson title
+- Learning objective
+- Narration text
+- Whiteboard drawing commands
+- Equations or diagrams
+- Estimated narration duration
+- Quiz or interaction details
+- Transition to the next segment
+
+Use a validated schema so the frontend can reliably render AI-generated lessons.
+
+Support different subjects, including mathematics, science, programming, and general educational topics.
+
+---
+
+## 4. Interactive Whiteboard Engine
+
+This is the most important component of TarsTutor.
+
+Build a reusable whiteboard engine capable of rendering:
+
+- Handwritten-style text.
+- Mathematical equations.
+- Graphs and coordinate systems.
+- Geometric shapes.
+- Arrows and annotations.
+- Tables and step-by-step calculations.
+- Educational diagrams.
+- Code examples with syntax highlighting.
+
+The whiteboard must support progressive rendering.
+
+For example, when teaching linear regression:
+
+1. Display the lesson title.
+2. Explain what linear regression means.
+3. Draw an X-Y coordinate system.
+4. Plot example data points.
+5. Draw a regression line.
+6. Introduce the equation `y = mx + b`.
+7. Explain slope and intercept.
+8. Walk through a prediction.
+9. Ask the student a short quiz.
+
+Each visual action must be coordinated with the spoken explanation.
+
+Use an appropriate rendering architecture such as SVG, Canvas, or an existing whiteboard library, depending on what best fits the codebase.
+
+Avoid fragile hardcoded animations that only work for one topic.
+
+The engine must work with dynamically generated lessons.
+
+---
+
+## 5. Gnani AI Speech Integration
+
+Use the existing Gnani AI configuration for both speech recognition and speech synthesis.
+
+### Text-to-Speech
+
+- Convert lesson narration into natural AI speech.
+- Play audio alongside whiteboard animations.
+- Support pause, resume, and replay.
+- Synchronize visuals with audio using actual timing information where available.
+- Handle audio buffering and network failures.
+- Cache generated audio when appropriate.
+
+### Speech-to-Text
+
+- Allow students to ask questions using their microphone.
+- Capture voice input with appropriate microphone permissions.
+- Convert the audio into text using Gnani AI STT.
+- Send the transcribed question to the AI tutor.
+- Generate a contextual answer.
+- Speak the response using Gnani AI TTS.
+- Update the whiteboard when a visual explanation is useful.
+
+**Critical requirement:** When a student interrupts the lesson, pause the ongoing lesson, answer the question, and then allow the student to resume from the correct position.
+
+Do not let overlapping audio streams play simultaneously.
+
+---
+
+## 6. AI Tutor Conversation and Context
+
+The AI tutor must behave like a real teacher, not a basic question-answer chatbot.
+
+It should:
+
+- Remember the current lesson topic.
+- Understand which concept is currently being explained.
+- Answer questions using the lesson context.
+- Explain difficult concepts in simpler language.
+- Provide additional examples when requested.
+- Adapt explanations to the student's level.
+- Ask relevant questions to check understanding.
+- Resume the main lesson naturally after an interruption.
+
+Example:
+
+**AI Tutor:** "The slope tells us how much the predicted value changes when X increases by one unit."
+
+**Student:** "Can you explain slope with a real-life example?"
+
+**AI Tutor:** "Of course. Imagine you earn ₹100 for every hour you work..."
+
+The whiteboard should then display a small example while the tutor explains.
+
+Maintain session-level lesson history and conversation context.
+
+---
+
+## 7. Interactive Quiz System
+
+Include short questions during lessons.
+
+Support:
+
+- Multiple-choice questions.
+- Numerical answers.
+- Simple text-based answers.
+- Immediate feedback.
+- Explanations for incorrect responses.
+- Continued teaching after the answer.
+
+For example:
+
+**Question:** A regression line has residuals of +5 and -5. What is their contribution to the sum of squared residuals?
+
+Options:
+
+- 0 points squared
+- 10 points squared
+- 50 points squared
+
+Correct answer: 50 points squared.
+
+The tutor should explain:
+
+`5² + (-5)² = 25 + 25 = 50`
+
+Quiz questions must be generated from the actual lesson content, not hardcoded examples.
+
+---
+
+## 8. User Interface and Navigation
+
+Implement a complete, consistent experience with three primary routes:
+
+### `/` — Landing Page
+
+Main lesson prompt, file upload, lesson examples, and Start Lesson button.
+
+### `/lesson/generating/:sessionId` — Generation Screen
+
+Real-time generation progress, status updates, error recovery, and automatic navigation.
+
+### `/lesson/:sessionId` — Interactive Classroom
+
+Full AI whiteboard, voice interaction, text chat, lesson controls, and quizzes.
+
+The transition should be:
+
+**Landing Page → Lesson Generation → Interactive AI Whiteboard Classroom**
+
+Ensure that browser refreshes, navigation, and session recovery are handled properly.
+
+Use a cohesive TarsTutor design system throughout.
+
+The interface should feel premium, responsive, smooth, and production-ready.
+
+---
+
+## 9. Performance and Reliability
+
+Optimize for a responsive learning experience.
+
+Where supported by the architecture:
+
+- Generate lesson segments incrementally.
+- Begin playback before the entire lesson is generated.
+- Preload the next lesson segment.
+- Cache reusable generated assets.
+- Avoid unnecessary frontend re-renders.
+- Handle API rate limits and timeouts.
+- Prevent duplicate lesson-generation requests.
+- Implement safe cancellation and retry behavior.
+- Recover gracefully from TTS, STT, or AI generation errors.
+
+Provide visible loading and failure states.
+
+Do not block the entire interface while preparing later lesson segments.
+
+---
+
+## 10. Implementation Workflow
+
+Follow this workflow carefully.
+
+### Phase 1 — Codebase Audit
+
+Inspect the complete existing project.
+
+Understand what already works, identify gaps, and determine which components can be reused.
+
+### Phase 2 — Architecture and Implementation Plan
+
+Prepare a concrete implementation plan covering frontend components, backend endpoints, lesson data structures, AI orchestration, whiteboard rendering, and Gnani integration.
+
+Make implementation decisions based on the actual existing architecture.
+
+### Phase 3 — Landing Page
+
+Build the responsive TarsTutor homepage based on Screenshot 2.
+
+### Phase 4 — Generation Experience
+
+Implement the processing screen based on Screenshot 3 and connect it to actual generation state.
+
+### Phase 5 — AI Lesson Engine
+
+Implement structured dynamic lesson generation.
+
+### Phase 6 — Whiteboard Classroom
+
+Build the interactive teaching experience based on Screenshot 1.
+
+### Phase 7 — Voice and Interaction
+
+Connect Gnani AI TTS/STT, student questions, tutor responses, and synchronized lesson playback.
+
+### Phase 8 — Testing and Refinement
+
+Test the complete workflow and resolve errors.
+
+Work through these phases autonomously using the existing codebase. Do not stop after writing a plan.
+
+---
+
+## 11. Acceptance Criteria
+
+The implementation is complete only when:
+
+- The application launches successfully.
+- The landing page closely matches the reference design.
+- Students can enter a topic and start a lesson.
+- The generation screen displays real progress.
+- The backend generates structured lesson content.
+- The classroom displays dynamic whiteboard explanations.
+- Whiteboard actions and narration are synchronized.
+- Gnani TTS plays generated explanations.
+- Gnani STT processes spoken student questions.
+- Students can interrupt and ask contextual questions.
+- The tutor answers and resumes the lesson correctly.
+- Interactive quizzes work.
+- Pause, resume, and playback controls function.
+- Errors are handled gracefully.
+- The layout works on desktop and mobile.
+- Existing functionality remains intact.
+- The project builds without known blocking errors.
+
+Test at least one end-to-end lesson using **linear regression**, including a graph, mathematical explanation, prediction example, and interactive quiz.
+
+Also test a different subject to verify that the implementation is genuinely dynamic rather than hardcoded for the demonstration.
+
+Do not claim that a feature works unless you have implemented and verified it.
+
+---
+
+## 12. Non-Negotiable Requirements
+
+1. **Project name: TarsTutor.** Replace old project branding wherever appropriate.
+2. Use all three screenshots as visual references.
+3. Build functional features, not placeholder buttons or static mockups.
+4. Reuse the existing codebase and Gnani API configuration.
+5. Never expose environment secrets.
+6. Do not rewrite working components unnecessarily.
+7. Avoid unnecessary dependencies and architectural complexity.
+8. Ensure voice, lesson generation, and whiteboard animations work together.
+9. Use original TarsTutor branding while closely matching the reference interaction patterns.
+10. Implement the project, run available tests, fix identified problems, and report the actual results.
+
+## Final Instruction
+
+**You are not just building a website. You are building an AI-powered teaching experience.**
+
+A student should be able to type:
+
+"Teach me linear regression from scratch."
+
+TarsTutor should understand the request, generate a structured lesson, open the interactive classroom, progressively explain concepts on the whiteboard, speak naturally, ask questions, and respond to student interruptions.
+
+The experience should feel like having a personal teacher explaining concepts live on a digital whiteboard.
+
+**Start by auditing the codebase, create your implementation plan, and then execute it. Make all necessary code changes rather than simply recommending what should be done.**
+
+At completion, provide a concise summary of changed files, implemented features, tests executed, known limitations, and any configuration still required.

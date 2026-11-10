@@ -1,0 +1,89 @@
+:root {
+  --tt-bg: #fafafa;
+  --tt-panel: #f4f4f4;
+  --tt-surface: #ffffff;
+  --tt-soft: #f0f0f0;
+  --tt-hover: #e9e9e9;
+  --tt-text: #242424;
+  --tt-muted: #626262;
+  --tt-border: #dedede;
+  --tt-accent: #333333;
+  --tt-accent-hover: #161616;
+  --tt-on-accent: #ffffff;
+  --tt-accent-soft: #efedf4;
+  --tt-success: #08765f;
+  --tt-success-soft: #e4f5ee;
+  --tt-danger: #bc3547;
+  --tt-danger-soft: #fff0f1;
+  --tt-warning: #81520c;
+  --tt-warning-soft: #fff5df;
+  --tt-shadow: 0 12px 40px #00000008, 0 2px 6px #00000003;
+  --tt-focus: #796a9f;
+}
+:root[data-tars-theme="dark"] {
+  --tt-bg: #161616;
+  --tt-panel: #1d1d1d;
+  --tt-surface: #242424;
+  --tt-soft: #2c2c2c;
+  --tt-hover: #343434;
+  --tt-text: #eeeeee;
+  --tt-muted: #b3b3b3;
+  --tt-border: #3b3b3b;
+  --tt-accent: #eeeeee;
+  --tt-accent-hover: #ffffff;
+  --tt-on-accent: #202020;
+  --tt-accent-soft: #343139;
+  --tt-success: #8ce0c5;
+  --tt-success-soft: #173b34;
+  --tt-danger: #ffabb4;
+  --tt-danger-soft: #472831;
+  --tt-warning: #f4d38f;
+  --tt-warning-soft: #3b3120;
+  --tt-shadow: 0 14px 44px #00000024, 0 2px 6px #00000010;
+  --tt-focus: #b2a7ce;
+}
+.tt-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 40px;
+  padding: 9px 13px !important;
+  color: var(--tt-text) !important;
+  background: var(--tt-surface) !important;
+  border: 1px solid var(--tt-border) !important;
+  border-radius: 12px;
+  font: 600 12px/1.4 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.18s, border-color 0.18s, box-shadow 0.18s;
+  &:hover {
+    background: var(--tt-hover) !important;
+    border-color: var(--tt-accent) !important;
+  }
+  &:focus-visible {
+    outline: 3px solid var(--tt-focus);
+    outline-offset: 3px;
+  }
+}
+@media (max-width: 760px) {
+  .tt-theme-toggle {
+    width: 38px;
+    min-height: 38px;
+    padding: 8px !important;
+    flex-shrink: 0;
+  }
+  .tt-theme-toggle > span {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(.tc-classroom, .tars-home, .tars-generation) *,
+  :where(.tc-classroom, .tars-home, .tars-generation) *::before,
+  :where(.tc-classroom, .tars-home, .tars-generation) *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

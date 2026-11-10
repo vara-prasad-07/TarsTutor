@@ -1,0 +1,366 @@
+{
+  "session_id": "demo-telugu-photosynthesis-v2",
+  "prompt": "కిరణజన్య సంయోగక్రియను తెలుగులో సులభంగా నేర్పించు. Explain photosynthesis entirely in natural Telugu. Use Telugu script for the title, chapter names, narration and board labels. Show a simple plant, sunlight, water and carbon dioxide leading to food and oxygen. Keep each chapter narration short, about 45 Telugu words. Include a simple Telugu quiz. Do not use Latin transliteration.",
+  "title": "కిరణజన్య సంయోగక్రియ పరిచయం",
+  "status": "completed",
+  "generating": false,
+  "stage": "start",
+  "stages": [
+    {
+      "id": "understand",
+      "label": "Understanding your learning request",
+      "status": "completed"
+    },
+    {
+      "id": "plan",
+      "label": "Planning your personalized lesson",
+      "status": "completed"
+    },
+    {
+      "id": "explain",
+      "label": "Generating explanations and examples",
+      "status": "completed"
+    },
+    {
+      "id": "visuals",
+      "label": "Preparing whiteboard visuals",
+      "status": "completed"
+    },
+    {
+      "id": "quiz",
+      "label": "Creating interactive quizzes",
+      "status": "completed"
+    },
+    {
+      "id": "narration",
+      "label": "Preparing AI tutor narration",
+      "status": "completed"
+    },
+    {
+      "id": "start",
+      "label": "Starting your interactive lesson",
+      "status": "completed"
+    }
+  ],
+  "segments": [
+    {
+      "id": "segment-1",
+      "title": "కిరణజన్య సంయోగక్రియ పరిచయం",
+      "objective": "మొక్కలు తమ ఆహారాన్ని స్వయంగా ఎలా తయారు చేసుకుంటాయో పరిచయం చేయడం",
+      "narration": "నమస్కారం! ఈరోజు మనం మొక్కలు తమ ఆహారాన్ని ఎలా తయారు చేసుకుంటాయో తెలుసుకుందాం. మొక్కలు కూడా మనలాగే జీవించడానికి ఆహారం కావాలి. కానీ అవి మనలా వంట చేసుకోలేవు కదా! మొక్కలు సూర్యరశ్మి, నీరు మరియు గాలిని ఉపయోగించి తమ ఆహారాన్ని స్వయంగా తయారు చేసుకుంటాయి. ఈ అద్భుతమైన ప్రక్రియను కిరణజన్య సంయోగక్రియ అంటారు. దీనివల్లనే మొక్కలు పెరుగుతాయి మరియు మనకు ప్రాణవాయువు లభిస్తుంది.",
+      "duration_seconds": 19.166666666666668,
+      "elements": [
+        {
+          "id": "segment-1-element-1",
+          "type": "text",
+          "reveal_at": 0.0,
+          "x": 60.0,
+          "y": 145,
+          "width": 880.0,
+          "height": 90.0,
+          "text": "మొక్కలు తమ ఆహారాన్ని స్వయంగా ఎలా తయారు చేసుకుంటాయో తెలుసుకుందాం.",
+          "caption": "పరిచయం",
+          "color": "ink",
+          "shape": "rectangle",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "x",
+          "y_label": "y",
+          "x_min": 0,
+          "x_max": 10,
+          "y_min": 0,
+          "y_max": 10,
+          "series": [],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        },
+        {
+          "id": "segment-1-element-2",
+          "type": "shape",
+          "reveal_at": 0.2,
+          "x": 380.0,
+          "y": 270.0,
+          "width": 240.0,
+          "height": 180.0,
+          "text": "మొక్క",
+          "caption": "హరిత మొక్క",
+          "color": "green",
+          "shape": "ellipse",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "x",
+          "y_label": "y",
+          "x_min": 0,
+          "x_max": 10,
+          "y_min": 0,
+          "y_max": 10,
+          "series": [],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        },
+        {
+          "id": "segment-1-element-3",
+          "type": "arrow",
+          "reveal_at": 0.5,
+          "x": 200.0,
+          "y": 320.0,
+          "width": 750.0,
+          "height": 100,
+          "text": "నీరు",
+          "caption": "",
+          "color": "blue",
+          "shape": "rectangle",
+          "x2": 370.0,
+          "y2": 340.0,
+          "x_label": "x",
+          "y_label": "y",
+          "x_min": 0,
+          "x_max": 10,
+          "y_min": 0,
+          "y_max": 10,
+          "series": [],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        },
+        {
+          "id": "segment-1-element-4",
+          "type": "equation",
+          "reveal_at": 0.7,
+          "x": 150.0,
+          "y": 500.0,
+          "width": 700.0,
+          "height": 90.0,
+          "text": "నీరు + కార్బన్ డై ఆక్సైడ్ + సూర్యరశ్మి -> ఆహారం + ఆక్సిజన్",
+          "caption": "సమీకరణం",
+          "color": "purple",
+          "shape": "rectangle",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "x",
+          "y_label": "y",
+          "x_min": 0,
+          "x_max": 10,
+          "y_min": 0,
+          "y_max": 10,
+          "series": [],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        }
+      ],
+      "quiz": {
+        "id": "segment-1-quiz",
+        "kind": "choice",
+        "prompt": "మొక్కలు తమ ఆహారాన్ని ఏ ప్రక్రియ ద్వారా తయారు చేసుకుంటాయి?",
+        "choices": [
+          "కిరణజన్య సంయోగక్రియ",
+          "శ్వాసక్రియ",
+          "జీర్ణక్రియ",
+          "బాష్పోత్సేకం"
+        ]
+      }
+    },
+    {
+      "id": "segment-2",
+      "title": "కిరణజన్య సంయోగక్రియ - అవసరమైన పదార్థాలు",
+      "objective": "సూర్యరశ్మి, నీరు మరియు కార్బన్ డై ఆక్సైడ్ పాత్రను వివరించడం",
+      "narration": "మొక్కలు కిరణజన్య సంయోగక్రియ ద్వారా ఆహారం తయారు చేయడానికి ప్రధానంగా మూడు పదార్థాలు అవసరం. మొదటిది ఆకాశం నుండి సూర్యరశ్మి, రెండవది వేర్ల ద్వారా పీల్చుకునే నీరు, మూడవది గాలి నుండి ఆకులు గ్రహించే కార్బన్ డై ఆక్సైడ్. ఈ మూడూ కలిస్తేనే మొక్కకు కావలసిన శక్తి లభిస్తుంది.",
+      "duration_seconds": 14.583333333333334,
+      "elements": [
+        {
+          "id": "segment-2-element-1",
+          "type": "text",
+          "reveal_at": 0.0,
+          "x": 60.0,
+          "y": 150.0,
+          "width": 880.0,
+          "height": 90.0,
+          "text": "మొక్కలకు కావలసిన ముఖ్యమైన పదార్థాలు: సూర్యరశ్మి, నీరు మరియు కార్బన్ డై ఆక్సైడ్.",
+          "caption": "ముఖ్య అంశాలు",
+          "color": "ink",
+          "shape": "rectangle",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "x",
+          "y_label": "y",
+          "x_min": 0,
+          "x_max": 10,
+          "y_min": 0,
+          "y_max": 10,
+          "series": [],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        },
+        {
+          "id": "segment-2-element-2",
+          "type": "table",
+          "reveal_at": 0.4,
+          "x": 60.0,
+          "y": 270.0,
+          "width": 880.0,
+          "height": 220.0,
+          "text": "",
+          "caption": "పదార్థాల పట్టిక",
+          "color": "blue",
+          "shape": "rectangle",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "x",
+          "y_label": "y",
+          "x_min": 0,
+          "x_max": 10,
+          "y_min": 0,
+          "y_max": 10,
+          "series": [],
+          "columns": [
+            "పదార్థం",
+            "సేకరించే భాగం",
+            "పాత్ర"
+          ],
+          "rows": [
+            [
+              "సూర్యరశ్మి",
+              "ఆకులు",
+              "శక్తిని అందిస్తుంది"
+            ],
+            [
+              "నీరు",
+              "వేర్లు",
+              "చెట్టు అంతటా ప్రసరిస్తుంది"
+            ],
+            [
+              "కార్బన్ డై ఆక్సైడ్",
+              "ఆకుల రంధ్రాలు",
+              "ఆహార తయారీకి ముడిసరుకు"
+            ]
+          ],
+          "language": "python"
+        }
+      ],
+      "quiz": {
+        "id": "segment-2-quiz",
+        "kind": "choice",
+        "prompt": "కిరణజన్య సంయోగక్రియకు వేర్ల ద్వారా మొక్క ఏ పదార్థాన్ని పీల్చుకుంటుంది?",
+        "choices": [
+          "సూర్యరశ్మి",
+          "నీరు",
+          "కార్బన్ డై ఆక్సైడ్",
+          "ఆక్సిజన్"
+        ]
+      }
+    },
+    {
+      "id": "segment-3",
+      "title": "కిరణజన్య సంయోగక్రియ - ఫలితాలు",
+      "objective": "ఆహారం మరియు ఆక్సిజన్ ఉత్పత్తిని తెలుసుకొని ప్రశ్నలకు సమాధానాలు ఇవ్వడం",
+      "narration": "ఈ ప్రక్రియ ద్వారా మొక్కలు తమకు కావలసిన గ్లూకోజ్ లేదా పిండి పదార్థాన్ని ఆహారంగా తయారు చేసుకుంటాయి. దీనితో పాటు, మొక్కలు ఆక్సిజన్ వాయువును విడుదల చేస్తాయి. ఈ ఆక్సిజన్ మనందరికీ పీల్చుకోవడానికి చాలా ముఖ్యం. ప్రకృతి మనకు అందించిన ఈ అద్భుతమైన వరం వల్లనే జీవకోటి సజీవంగా ఉంది.",
+      "duration_seconds": 15.0,
+      "elements": [
+        {
+          "id": "segment-3-element-1",
+          "type": "text",
+          "reveal_at": 0.0,
+          "x": 60.0,
+          "y": 150.0,
+          "width": 880.0,
+          "height": 100.0,
+          "text": "ఉత్పత్తులు: పిండి పదార్థం (ఆహారం) మరియు ఆక్సిజన్",
+          "caption": "ఫలితాలు",
+          "color": "green",
+          "shape": "rectangle",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "x",
+          "y_label": "y",
+          "x_min": 0,
+          "x_max": 10,
+          "y_min": 0,
+          "y_max": 10,
+          "series": [],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        },
+        {
+          "id": "segment-3-element-2",
+          "type": "equation",
+          "reveal_at": 0.3,
+          "x": 60.0,
+          "y": 280.0,
+          "width": 880.0,
+          "height": 120.0,
+          "text": "సూర్యరశ్మి + నీరు + కార్బన్ డై ఆక్సైడ్ -> ఆహారం + ఆక్సిజన్",
+          "caption": "సమీకరణం",
+          "color": "blue",
+          "shape": "rectangle",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "x",
+          "y_label": "y",
+          "x_min": 0,
+          "x_max": 10,
+          "y_min": 0,
+          "y_max": 10,
+          "series": [],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        },
+        {
+          "id": "segment-3-element-3",
+          "type": "shape",
+          "reveal_at": 0.6,
+          "x": 250.0,
+          "y": 430.0,
+          "width": 500.0,
+          "height": 180.0,
+          "text": "మొక్కలు ఆక్సిజన్ ఇస్తాయి",
+          "caption": "జీవనాధారం",
+          "color": "purple",
+          "shape": "ellipse",
+          "x2": 250,
+          "y2": 250,
+          "x_label": "x",
+          "y_label": "y",
+          "x_min": 0,
+          "x_max": 10,
+          "y_min": 0,
+          "y_max": 10,
+          "series": [],
+          "columns": [],
+          "rows": [],
+          "language": "python"
+        }
+      ],
+      "quiz": {
+        "id": "segment-3-quiz",
+        "kind": "choice",
+        "prompt": "కిరణజన్య సంయోగక్రియ సమయంలో మొక్కలు ఏ వాయువును విడుదల చేస్తాయి?",
+        "choices": [
+          "కార్బన్ డై ఆక్సైడ్",
+          "ఆక్సిజన్",
+          "నైట్రోజన్",
+          "హైడ్రోజన్"
+        ]
+      }
+    }
+  ],
+  "error": null,
+  "revision": 19,
+  "materials": [],
+  "total_segments": 3,
+  "conversation": [
+    {
+      "role": "student",
+      "text": "మొక్కలకు సూర్యరశ్మి ఎందుకు అవసరం రెండు చిన్న వాక్యాల్లో తెలుగులో సమాధానం చెప్పు."
+    },
+    {
+      "role": "tutor",
+      "text": "మొక్కలు కిరణజన్య సంయోగక్రియ ద్వారా తమ ఆహారాన్ని తయారు చేసుకోవడానికి సూర్యరశ్మి శక్తిని అందిస్తుంది. ఈ కాంతి శక్తి లేకపోతే మొక్కలు తమకు కావలసిన పిండి పదార్థాలను తయారు చేసుకోలేవు."
+    }
+  ]
+}
