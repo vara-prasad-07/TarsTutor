@@ -42,7 +42,7 @@ export default function ProductDemo({ view }: { view: ClassroomWindow }) {
   const navigate = () => {};
   let ui;
   if (shot === "home" || shot === "prompt" || shot === "te-prompt" || shot === "materials") {
-    ui = <Landing view={view} navigate={navigate} begin={() => {}} initialPrompt={shot === "home" ? "" : source.prompt} initialMaterials={shot === "materials" ? source.materials : []} />;
+    ui = <Landing view={view} navigate={navigate} begin={() => {}} initialPrompt={shot === "home" ? "" : shot === "te-prompt" ? "కిరణజన్య సంయోగక్రియను తెలుగులో సులభంగా నేర్పించు." : source.prompt} initialMaterials={shot === "materials" ? source.materials : []} />;
   } else if (shot === "generating") {
     const stages = snapshot.stages.map((stage, i) => ({ ...stage, status: i < 3 ? "completed" as const : i === 3 ? "active" as const : "pending" as const }));
     ui = <Generating view={view} snapshot={{ ...snapshot, stages, segments: [], generating: true, status: "generating" }} error="" prompt={snapshot.prompt} retry={navigate} cancel={navigate} navigate={navigate} />;
@@ -52,9 +52,9 @@ export default function ProductDemo({ view }: { view: ClassroomWindow }) {
     view.localStorage.setItem(`tars-classroom-${snapshot.session_id}`, JSON.stringify({ segmentId: snapshot.segments[chapter].id, progress, answered: [], strokes: {}, speed: 1 }));
     const initial: ClassroomProps["initialPresentation"] = { sidebar: shot === "en-materials" || shot === "te-materials", transcript: shot === "en-transcript" || shot === "te-transcript", question: shot === "en-question" ? "What does the slope of six mean?" : shot === "te-question" ? teluguTranscript.text : "", answer: shot === "en-answer" ? englishAnswer as TutorAnswer : shot === "te-answer" ? teluguAnswer as TutorAnswer : undefined, recording: shot === "te-recording", complete: shot === "complete" };
     initial.onBoardReady = markReady;
-    if (shot === "quiz-feedback") {
+    if (shot === "quiz-entry" || shot === "quiz-feedback") {
       initial.quizAnswer = "75";
-      initial.feedback = englishFeedback;
+      if (shot === "quiz-feedback") initial.feedback = englishFeedback;
     }
     ui = <Classroom snapshot={snapshot} view={view} onNavigate={navigate} refresh={navigate} initialPresentation={initial} />;
   }
