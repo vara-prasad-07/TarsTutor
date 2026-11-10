@@ -343,11 +343,11 @@ export function Landing({
         <div className="tars-nav-actions">
           <a
             className="tars-github-link"
-            href="https://tarstutor.netlify.app/"
+            href="https://github.com/vara-prasad-07/TarsTutor"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Visit TarsTutor (opens in a new tab)"
-            title="Visit TarsTutor"
+            aria-label="View TarsTutor on GitHub (opens in a new tab)"
+            title="View on GitHub"
           >
             <svg
               width="22"
