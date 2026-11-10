@@ -134,6 +134,31 @@
     }
   }
 }
+.tars-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.tars-github-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--tt-text);
+  background: var(--tt-surface);
+  border: 1px solid var(--tt-border);
+  border-radius: 12px;
+  &:hover {
+    background: var(--tt-hover);
+    border-color: var(--tt-accent);
+  }
+  &:focus-visible {
+    outline: 3px solid var(--tt-focus);
+    outline-offset: 3px;
+  }
+}
 .tars-nav-note {
   font-size: 11px;
   color: var(--tt-muted);

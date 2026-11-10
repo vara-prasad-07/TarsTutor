@@ -262,7 +262,8 @@ export function Landing({
   initialMaterials?: LessonMaterial[];
 }) {
   const [prompt, setPrompt] = useState(initialPrompt);
-  const [materials, setMaterials] = useState<LessonMaterial[]>(initialMaterials);
+  const [materials, setMaterials] =
+    useState<LessonMaterial[]>(initialMaterials);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
   const [recent, setRecent] = useState<{ session_id: string; title: string }[]>(
@@ -339,7 +340,27 @@ export function Landing({
             Open whiteboard <span aria-hidden="true">↗</span>
           </a>
         </nav>
-        <ThemeToggle view={view} />
+        <div className="tars-nav-actions">
+          <a
+            className="tars-github-link"
+            href="https://tarstutor.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit TarsTutor (opens in a new tab)"
+            title="Visit TarsTutor"
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M12 .75a11.25 11.25 0 0 0-3.558 21.923c.563.104.768-.244.768-.542 0-.267-.01-.974-.015-1.912-3.13.68-3.79-1.51-3.79-1.51-.512-1.3-1.25-1.646-1.25-1.646-1.023-.7.078-.686.078-.686 1.13.08 1.725 1.16 1.725 1.16 1.005 1.722 2.637 1.225 3.279.937.102-.728.393-1.225.715-1.507-2.498-.284-5.124-1.25-5.124-5.563 0-1.229.44-2.234 1.16-3.021-.116-.285-.503-1.429.11-2.978 0 0 .945-.303 3.094 1.155A10.79 10.79 0 0 1 12 6.18c.956.005 1.918.13 2.817.38 2.147-1.458 3.09-1.155 3.09-1.155.615 1.549.229 2.693.113 2.978.722.787 1.158 1.792 1.158 3.021 0 4.324-2.63 5.276-5.136 5.554.404.35.764 1.042.764 2.1 0 1.517-.014 2.741-.014 3.114 0 .3.202.651.774.54A11.252 11.252 0 0 0 12 .75Z" />
+            </svg>
+          </a>
+          <ThemeToggle view={view} />
+        </div>
         <span className="tars-nav-note">
           <span /> A little curiosity goes a long way
         </span>
@@ -945,7 +966,15 @@ export default function TarsApp({ view }: { view: ClassroomWindow }) {
     }
   };
   if (import.meta.env.DEV && path === "/__video") {
-    return <Suspense fallback={<div className="tars-route-loading">Preparing product screen…</div>}><ProductDemo view={view} /></Suspense>;
+    return (
+      <Suspense
+        fallback={
+          <div className="tars-route-loading">Preparing product screen…</div>
+        }
+      >
+        <ProductDemo view={view} />
+      </Suspense>
+    );
   }
   if (
     path === "/board" ||
