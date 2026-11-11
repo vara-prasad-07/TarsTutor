@@ -14,6 +14,8 @@ python -m venv .venv
 
 Open http://127.0.0.1:8000/docs. Run offline checks with `.\.venv\Scripts\python.exe -m pytest -q`.
 
+Select the inference provider in `tarsBe/.env` with `SWITCH=gemini` (the default) or `SWITCH=openrouter`. Gemini uses `GEMINI_API_KEY` and `GEMINI_MODEL`. OpenRouter uses `OPENROUTER_API` and `OPENROUTER_MODEL` (defaults to `google/gemini-2.5-flash`; use an OpenRouter model ID). Both conversation and classroom APIs follow this setting. Use a model supporting JSON output and image input for drawing questions. Only the selected provider's key is required. Restart the backend after changing these values. Unknown `SWITCH` values fail configuration validation.
+
 The frontend connects through its Vite `/api/tutor` proxy. From the sibling `tarsTutor` folder, `npm run dev:tutor` starts both services, reusing an existing TarsTutor backend if present. Keep provider keys in this backend's `.env`. Restart an existing backend after code/config changes.
 
 ## Classroom APIs

@@ -20,7 +20,7 @@ from langchain_core.exceptions import OutputParserException
 from .config import Settings
 from .lesson_models import AnswerRequest, AskRequest, LessonRequest, Material, Outline, Quiz, SegmentDraft, TutorAnswer, Upload
 from .models import StrictModel
-from .provider import GeminiProvider, Provider, ProviderUnavailable
+from .provider import create_provider, Provider, ProviderUnavailable
 
 STAGES = [
     ("understand", "Understanding your learning request"),
@@ -214,9 +214,9 @@ class LessonService:
 
     def configured(self):
         if self.provider is None:
-            if not self.config.gemini_api_key.get_secret_value():
-                raise HTTPException(503, "Set GEMINI_API_KEY in tarsBe/.env and restart to generate lessons.")
-            self.provider = GeminiProvider(self.config)
+            if not self.config.llm_api_key.get_secret_value():
+                raise HTTPException(503, self.config.missing_llm_key_message)
+            self.provider = create_provider(self.config)
         return self.provider
 
     async def generate(self, schema, instruction, context):

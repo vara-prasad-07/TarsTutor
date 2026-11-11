@@ -21,7 +21,7 @@ from pydantic import Field
 
 class LegacyPrompt(StrictModel):
     prompt: str = Field(min_length=1, max_length=4000)
-from .provider import GeminiProvider, Provider, ProviderUnavailable
+from .provider import create_provider, Provider, ProviderUnavailable
 from .store import Store
 from .lessons import LessonService, create_lesson_router
 from .speech import create_speech_router
@@ -95,12 +95,12 @@ def create_app(settings: Settings | None = None, provider: Provider | None = Non
 
     @api.get("/health")
     async def health():
-        return {"status": "ok", "llm_configured": bool(provider or config.gemini_api_key.get_secret_value()), "model": config.gemini_model}
+        return {"status": "ok", "llm_configured": bool(provider or config.llm_api_key.get_secret_value()), "model": config.llm_model}
 
     @api.get("/ready")
     async def ready():
-        if not provider and not config.gemini_api_key.get_secret_value():
-            raise HTTPException(503, "Set GEMINI_API_KEY in tarsBe/.env and restart.")
+        if not provider and not config.llm_api_key.get_secret_value():
+            raise HTTPException(503, config.missing_llm_key_message)
         return {"status": "ready", "note": "Configuration present; provider connectivity is checked on a turn."}
 
     @api.post("/api/tutor/sessions", status_code=201, dependencies=[Depends(authorize)])
@@ -131,10 +131,10 @@ def create_app(settings: Settings | None = None, provider: Provider | None = Non
             return cached[1]
         if body.answer_to_question_id and (not session["active_question"] or session["active_question"]["id"] != body.answer_to_question_id):
             raise HTTPException(422, "Question is not the active question in this session.")
-        if not provider and not config.gemini_api_key.get_secret_value():
-            raise HTTPException(503, "Set GEMINI_API_KEY in tarsBe/.env and restart.")
+        if not provider and not config.llm_api_key.get_secret_value():
+            raise HTTPException(503, config.missing_llm_key_message)
         if graph is None:
-            graph = build_graph(GeminiProvider(config))
+            graph = build_graph(create_provider(config))
         # Avoid building an unbounded queue of paid generations.
         if gate.locked():
             raise HTTPException(429, "Backend is busy. Retry this turn later.")
@@ -145,7 +145,7 @@ def create_app(settings: Settings | None = None, provider: Provider | None = Non
         except TimeoutError:
             raise HTTPException(504, "Tutor turn timed out; retry with the same turn_id.") from None
         except ProviderUnavailable:
-            raise HTTPException(503, "Gemini is temporarily unavailable after one retry. Try this turn again shortly.") from None
+            raise HTTPException(503, "The AI provider is temporarily unavailable after one retry. Try this turn again shortly.") from None
         except ValidationError:
             raise HTTPException(502, "The model returned an invalid decision. Retry this turn.") from None
         except Exception as exc:
@@ -171,7 +171,7 @@ def create_app(settings: Settings | None = None, provider: Provider | None = Non
         response = TurnResponse(session_id=session_id, turn_id=body.turn_id, status=result["status"], intent=result["classification"].intent,
             reply=draft.reply, lesson=lesson, question=public_question, feedback=result.get("feedback"),
             next_action="clarify" if result["status"] != "completed" else "answer_question" if public_question else "continue",
-            trace=result["trace"], model=config.gemini_model)
+            trace=result["trace"], model=config.llm_model)
         try:
             store.commit(session_id, fingerprint, request_data, response.model_dump(), session["revision"], question)
         except ValueError:
